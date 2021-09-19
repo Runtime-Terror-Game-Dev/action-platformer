@@ -15,15 +15,21 @@ namespace Platformer.Gameplay
     {
         public EnemyController enemy;
         public PlayerController player;
+        public Collider2D hitbox;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public override void Execute()
         {
-            var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
-
+            var willHurtEnemy = false;
+            if (hitbox != null && player == null)
+            {
+                Debug.Log(hitbox.bounds.center.y);
+                willHurtEnemy = hitbox.bounds.center.y <= enemy.Bounds.max.y;
+            }
             if (willHurtEnemy)
             {
+                Debug.Log("will hurt enemy");
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null)
                 {

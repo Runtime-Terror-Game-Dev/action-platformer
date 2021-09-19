@@ -17,6 +17,7 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public AudioClip[] attackAudioClips;
+        private GameObject hitbox;
         private int attackAudioClipIndex;
         /// <summary>
         /// Max horizontal speed of the player.
@@ -56,6 +57,8 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            hitbox = this.gameObject.transform.GetChild(0).gameObject;
+            hitbox.SetActive(false);
         }
 
         protected override void Update()
@@ -82,6 +85,7 @@ namespace Platformer.Mechanics
             {
                 AttackHitboxTimer -= Time.deltaTime;
                 attackState = AttackState.Attacking;
+                hitbox.SetActive(true);
             }
             if (AttackHitboxTimer == 0)
             {
@@ -89,6 +93,7 @@ namespace Platformer.Mechanics
                 {
                     AttackCoolDownTimer -= Time.deltaTime;
                     attackState = AttackState.Cooldown;
+                    hitbox.SetActive(false);
                 }
             }
             if (AttackCoolDownTimer <= 0)
@@ -259,11 +264,25 @@ namespace Platformer.Mechanics
                 }
             }
 
+            // add flip hitbox
+            //broken, flips too fast
             if (move.x > 0.01f)
-                spriteRenderer.flipX = false;
+            {
+                if (spriteRenderer.flipX != false)
+                {
+                    spriteRenderer.flipX = false;
+                    hitbox.transform.localPosition = new Vector2(-hitbox.transform.localPosition.x, 0);
+                }
+            }
             else if (move.x < -0.01f)
-                spriteRenderer.flipX = true;
+            {
+                if (spriteRenderer.flipX != true)
+                {
+                    spriteRenderer.flipX = true;
 
+                    hitbox.transform.localPosition = new Vector2(-hitbox.transform.localPosition.x, 0);
+                }
+            }
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
