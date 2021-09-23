@@ -48,10 +48,15 @@ namespace Platformer.Mechanics
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
+            var hitbox = collision.gameObject.GetComponent<Hitbox>();
             try
             {
-                // playerControllerHitbox = collision.gameObject.transform.GetChild(0).gameObject.GetComponent<Collider2D>();
-                playerControllerHitbox = GetChildComponentByName<Collider2D>("Hitbox");
+                if (hitbox)
+                {
+                    playerControllerHitbox = hitbox.gameObject.GetComponent<Collider2D>();
+                    Debug.Log(playerControllerHitbox);
+
+                }
             }
             catch (SystemException e)
             {

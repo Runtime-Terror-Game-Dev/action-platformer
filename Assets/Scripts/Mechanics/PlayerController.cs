@@ -17,7 +17,7 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public AudioClip[] attackAudioClips;
-        private GameObject hitbox;
+        public GameObject hitbox;
         private int attackAudioClipIndex;
         /// <summary>
         /// Max horizontal speed of the player.
@@ -57,7 +57,6 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
-            hitbox = this.gameObject.transform.GetChild(0).gameObject;
             hitbox.SetActive(false);
         }
 

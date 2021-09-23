@@ -23,10 +23,7 @@ namespace Platformer.Gameplay
         {
             var willHurtEnemy = false;
             if (hitbox != null && player == null)
-            {
-                Debug.Log(hitbox.bounds.center.y);
                 willHurtEnemy = hitbox.bounds.center.y <= enemy.Bounds.max.y;
-            }
             if (willHurtEnemy)
             {
                 Debug.Log("will hurt enemy");
@@ -37,17 +34,12 @@ namespace Platformer.Gameplay
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
-                        player.Bounce(2);
-                    }
-                    else
-                    {
-                        player.Bounce(7);
+
                     }
                 }
                 else
                 {
                     Schedule<EnemyDeath>().enemy = enemy;
-                    player.Bounce(2);
                 }
             }
             else
