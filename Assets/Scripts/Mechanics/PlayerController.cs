@@ -129,16 +129,6 @@ namespace Platformer.Mechanics
             //if previous was a success, we can attack. if failure, we don't.
             //if exception because stack was empty (no previous attacks), we attack, and push to stack.
 
-            //broken exception for now
-            // try
-            // {
-            //     success = AttackStack.Pop();
-            // }
-            // catch (SystemException.InvalidOperationException)
-            // {
-            //     success = true;
-            // }
-
             if (AttackStack.Count > 0)
             {
                 prevAttackTimeAgo = AttackStack.Pop();
@@ -259,6 +249,10 @@ namespace Platformer.Mechanics
                 }
             }
 
+<<<<<<< Updated upstream
+=======
+            // add flip hitbox
+>>>>>>> Stashed changes
             if (move.x > 0.01f)
                 spriteRenderer.flipX = false;
             else if (move.x < -0.01f)
