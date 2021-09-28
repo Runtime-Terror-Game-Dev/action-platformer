@@ -18,6 +18,8 @@ namespace Platformer.Mechanics
         public AudioClip ouchAudio;
         public AudioClip[] attackAudioClips;
         public GameObject hitbox;
+
+        public float hitboxOffset;
         private int attackAudioClipIndex;
         /// <summary>
         /// Max horizontal speed of the player.
@@ -184,8 +186,6 @@ namespace Platformer.Mechanics
 
 
         }
-        //add color tryparsehtml utility conversion function
-
         int RepeatCheck(int previousIndex, int range)
         {
             int index = Random.Range(0, range);
@@ -263,31 +263,29 @@ namespace Platformer.Mechanics
                 }
             }
 
-            // add flip hitbox
-            //broken, flips too fast
             if (move.x > 0.01f)
             {
                 if (spriteRenderer.flipX != false)
                 {
                     spriteRenderer.flipX = false;
-                    hitbox.transform.localPosition = new Vector2(-hitbox.transform.localPosition.x, 0);
                 }
+                hitbox.transform.localPosition = new Vector2(gameObject.transform.localPosition.x + hitboxOffset, gameObject.transform.localPosition.y); //hitbox tracks player
             }
             else if (move.x < -0.01f)
             {
                 if (spriteRenderer.flipX != true)
                 {
                     spriteRenderer.flipX = true;
-
-                    hitbox.transform.localPosition = new Vector2(-hitbox.transform.localPosition.x, 0);
                 }
+                hitbox.transform.localPosition = new Vector2(gameObject.transform.localPosition.x - hitboxOffset, gameObject.transform.localPosition.y); //hitbox tracks player
             }
+            //if in attack, prevent the player from flipping
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
         }
-
+        //TODO taken damage state (brief invulnerability, sprite change)
         public enum JumpState
         {
             Grounded,

@@ -19,14 +19,11 @@ namespace Platformer.Gameplay
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        //TODO fix bug where killing an enemy with health script also kills player
         public override void Execute()
         {
-            var willHurtEnemy = false;
-            if (hitbox != null && player == null)
-                willHurtEnemy = hitbox.bounds.center.y <= enemy.Bounds.max.y;
-            if (willHurtEnemy)
+            if (hitbox != null)
             {
-                Debug.Log("will hurt enemy");
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null)
                 {
@@ -34,17 +31,27 @@ namespace Platformer.Gameplay
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
-
                     }
                 }
-                else
-                {
-                    Schedule<EnemyDeath>().enemy = enemy;
-                }
+                // else
+                // {
+                //     Schedule<EnemyDeath>().enemy = enemy;
+                // }
+                Debug.Log("willHurtEnemy = true");
             }
-            else
+            else //we assume player ran into enemy
             {
-                Schedule<PlayerDeath>();
+                Debug.Log("willHurtEnemey = false");
+                var playerHealth = player.GetComponent<Health>();
+                if (playerHealth != null) //always true
+                {
+                    if (playerHealth.currentHP == 1) //last hit
+                    {
+                        Schedule<PlayerDeath>();
+                    }
+                    else
+                        playerHealth.Decrement();
+                }
             }
         }
     }

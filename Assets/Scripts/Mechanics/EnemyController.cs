@@ -33,18 +33,7 @@ namespace Platformer.Mechanics
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-
-        private T GetChildComponentByName<T>(string name) where T : Component
-        {
-            foreach (T component in GetComponentsInChildren<T>(true))
-            {
-                if (component.gameObject.name == name)
-                {
-                    return component;
-                }
-            }
-            return null;
-        }
+        //jank
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
@@ -54,14 +43,13 @@ namespace Platformer.Mechanics
                 if (hitbox)
                 {
                     playerControllerHitbox = hitbox.gameObject.GetComponent<Collider2D>();
-                    Debug.Log(playerControllerHitbox);
-
                 }
             }
             catch (SystemException e)
             {
                 playerControllerHitbox = null;
             }
+            //Hitbox should be set.
             if (player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
@@ -70,7 +58,7 @@ namespace Platformer.Mechanics
                 ev.hitbox = null;
             }
             //custom hitbox detection
-            if (playerControllerHitbox != null && player == null)
+            if (playerControllerHitbox != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = null;
