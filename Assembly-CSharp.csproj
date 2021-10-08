@@ -680,20 +680,11 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/2020.3.18f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
- <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
- <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
- </Reference>
- <Reference Include="Cinemachine">
- <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
- </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="com.unity.cinemachine.editor">
- <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Runtime">
- <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ <Reference Include="Unity.2D.Tilemap.Editor">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.InteractiveTutorialsFramework">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/UnityEditor.InteractiveTutorialsFramework.dll</HintPath>
@@ -703,9 +694,6 @@
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -722,11 +710,11 @@
  <Reference Include="Unity.PlasticSCM.Editor">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Play.Publisher.Editor">
- <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Play.Publisher.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Play.Publisher.Editor">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Play.Publisher.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -736,6 +724,21 @@
  </Reference>
  <Reference Include="Unity.EditorCoroutines.Editor">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.EditorCoroutines.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.InternalAPIEditorBridgeDev.001">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.InternalAPIEditorBridgeDev.001.dll</HintPath>
+ </Reference>
+ <Reference Include="Cinemachine">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Runtime">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Timeline.Editor">
+ <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.InteractiveTutorials.Core.Scripts">
  <HintPath>C:/Game Developement/cosc/action-platformer/Library/ScriptAssemblies/Unity.InteractiveTutorials.Core.Scripts.dll</HintPath>
