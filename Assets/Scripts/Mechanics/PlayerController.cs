@@ -17,6 +17,9 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public AudioClip[] attackAudioClips;
+        public GameObject hitbox;
+
+        public float hitboxOffset;
         private int attackAudioClipIndex;
         /// <summary>
         /// Max horizontal speed of the player.
@@ -56,6 +59,7 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            hitbox.SetActive(false);
         }
 
         protected override void Update()
@@ -82,6 +86,7 @@ namespace Platformer.Mechanics
             {
                 AttackHitboxTimer -= Time.deltaTime;
                 attackState = AttackState.Attacking;
+                hitbox.SetActive(true);
             }
             if (AttackHitboxTimer == 0)
             {
@@ -89,6 +94,7 @@ namespace Platformer.Mechanics
                 {
                     AttackCoolDownTimer -= Time.deltaTime;
                     attackState = AttackState.Cooldown;
+                    hitbox.SetActive(false);
                 }
             }
             if (AttackCoolDownTimer <= 0)
@@ -170,8 +176,6 @@ namespace Platformer.Mechanics
 
 
         }
-        //add color tryparsehtml utility conversion function
-
         int RepeatCheck(int previousIndex, int range)
         {
             int index = Random.Range(0, range);
@@ -254,16 +258,28 @@ namespace Platformer.Mechanics
             // add flip hitbox
 >>>>>>> Stashed changes
             if (move.x > 0.01f)
-                spriteRenderer.flipX = false;
+            {
+                if (spriteRenderer.flipX != false)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                hitbox.transform.localPosition = new Vector2(gameObject.transform.localPosition.x + hitboxOffset, gameObject.transform.localPosition.y); //hitbox tracks player
+            }
             else if (move.x < -0.01f)
-                spriteRenderer.flipX = true;
-
+            {
+                if (spriteRenderer.flipX != true)
+                {
+                    spriteRenderer.flipX = true;
+                }
+                hitbox.transform.localPosition = new Vector2(gameObject.transform.localPosition.x - hitboxOffset, gameObject.transform.localPosition.y); //hitbox tracks player
+            }
+            //if in attack, prevent the player from flipping
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
         }
-
+        //TODO taken damage state (brief invulnerability, sprite change)
         public enum JumpState
         {
             Grounded,

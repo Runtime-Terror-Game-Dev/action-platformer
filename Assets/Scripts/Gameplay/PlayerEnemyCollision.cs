@@ -15,14 +15,14 @@ namespace Platformer.Gameplay
     {
         public EnemyController enemy;
         public PlayerController player;
+        public Collider2D hitbox;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
+        //TODO fix bug where killing an enemy with health script also kills player
         public override void Execute()
         {
-            var willHurtEnemy = player.Bounds.center.y >= enemy.Bounds.max.y;
-
-            if (willHurtEnemy)
+            if (hitbox != null)
             {
                 var enemyHealth = enemy.GetComponent<Health>();
                 if (enemyHealth != null)
@@ -31,22 +31,27 @@ namespace Platformer.Gameplay
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
-                        player.Bounce(2);
+                    }
+                }
+                // else
+                // {
+                //     Schedule<EnemyDeath>().enemy = enemy;
+                // }
+                Debug.Log("willHurtEnemy = true");
+            }
+            else //we assume player ran into enemy
+            {
+                Debug.Log("willHurtEnemey = false");
+                var playerHealth = player.GetComponent<Health>();
+                if (playerHealth != null) //always true
+                {
+                    if (playerHealth.currentHP == 1) //last hit
+                    {
+                        Schedule<PlayerDeath>();
                     }
                     else
-                    {
-                        player.Bounce(7);
-                    }
+                        playerHealth.Decrement();
                 }
-                else
-                {
-                    Schedule<EnemyDeath>().enemy = enemy;
-                    player.Bounce(2);
-                }
-            }
-            else
-            {
-                Schedule<PlayerDeath>();
             }
         }
     }

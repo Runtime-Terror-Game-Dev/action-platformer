@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
@@ -20,6 +21,8 @@ namespace Platformer.Mechanics
         internal Collider2D _collider;
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
+        private Collider2D playerControllerHitbox;
+
 
         public Bounds Bounds => _collider.bounds;
 
@@ -30,14 +33,36 @@ namespace Platformer.Mechanics
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
-
+        //jank
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
+            var hitbox = collision.gameObject.GetComponent<Hitbox>();
+            try
+            {
+                if (hitbox)
+                {
+                    playerControllerHitbox = hitbox.gameObject.GetComponent<Collider2D>();
+                }
+            }
+            catch (SystemException e)
+            {
+                playerControllerHitbox = null;
+            }
+            //Hitbox should be set.
             if (player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = player;
+                ev.enemy = this;
+                ev.hitbox = null;
+            }
+            //custom hitbox detection
+            if (playerControllerHitbox != null)
+            {
+                var ev = Schedule<PlayerEnemyCollision>();
+                ev.player = null;
+                ev.hitbox = playerControllerHitbox;
                 ev.enemy = this;
             }
         }
