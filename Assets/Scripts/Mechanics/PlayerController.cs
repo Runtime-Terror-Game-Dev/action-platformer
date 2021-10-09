@@ -120,6 +120,7 @@ namespace Platformer.Mechanics
             }
             if (DamageFlashTimer > 0)
             {
+                // playerrigidbody.AddForce(new Vector2(-1000f, 1000f), ForceMode2D.Impulse);
                 DamageFlashTimer -= Time.deltaTime;
             }
             if (DamageFlashTimer <= 0)
@@ -289,13 +290,19 @@ namespace Platformer.Mechanics
             }
             //TODO if in attack, prevent the player from flipping
             animator.SetBool("grounded", IsGrounded);
-            animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
-            // if (damagedState != "Impact")
-            //     targetVelocity = move * maxSpeed;
-            // else
-            //     targetVelocity = new Vector2(velocity.x, velocity.y);
+            if (damagedState != "Impact")
+            {
+                animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+                targetVelocity = move * maxSpeed;
+            }
+            else
+            {
+                targetVelocity = new Vector2(-1f, 2f);
+                velocity.y = 3f;
+                animator.SetFloat("velocityX", Mathf.Abs(velocity.x));
+            }
 
         }
         //TODO taken damage state (brief invulnerability, sprite change)
