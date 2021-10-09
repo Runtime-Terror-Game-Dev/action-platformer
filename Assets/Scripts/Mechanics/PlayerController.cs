@@ -253,10 +253,7 @@ namespace Platformer.Mechanics
                 }
             }
 
-<<<<<<< Updated upstream
-=======
             // add flip hitbox
->>>>>>> Stashed changes
             if (move.x > 0.01f)
             {
                 if (spriteRenderer.flipX != false)
