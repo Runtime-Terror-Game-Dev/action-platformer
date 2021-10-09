@@ -167,7 +167,6 @@ namespace Platformer.Mechanics
                 if (prevAttackTimeAgo <= (AttackCoolDownDuration + AttackComboTiming))
                 {
                     // success
-                    Debug.Log("success");
                     PlayRandom2();
                     AttackCoolDownTimer = AttackCoolDownDuration;
                     AttackHitboxTimer = AttackHitboxDuration;
@@ -175,7 +174,7 @@ namespace Platformer.Mechanics
                 }
                 else
                 {
-                    Debug.Log("failure");
+                    Debug.Log("Missed combo timing :(");
                     // failure
                     //playbadsound
                     audioSource.PlayOneShot(ouchAudio);
@@ -185,8 +184,7 @@ namespace Platformer.Mechanics
             }
             if (attackState == AttackState.Cooldown) //punish if they attack during cooldown
             {
-                Debug.Log("failure");
-                // failure
+                Debug.Log("Missed combo timing :(");                // failure
                 audioSource.PlayOneShot(ouchAudio);
                 AttackCoolDownTimer = AttackCoolDownDuration * 3;
                 AttackStack.Clear();

@@ -21,6 +21,7 @@ namespace Platformer.Gameplay
             if (player.health.IsAlive)
             {
                 player.damagedState = "Impact";
+                player.audioSource.PlayOneShot(player.ouchAudio);
                 // player.playerrigidbody.AddForce(new Vector2(-1000f, 1000f), ForceMode2D.Impulse);
                 player.DamageFlashTimer = player.DamageFlashDuration;
             }
