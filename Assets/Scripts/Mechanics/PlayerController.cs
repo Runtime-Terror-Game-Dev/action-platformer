@@ -20,6 +20,7 @@ namespace Platformer.Mechanics
         public GameObject hitbox;
 
         public float hitboxOffset;
+        public float knockback = 2f;
         private int attackAudioClipIndex;
         /// <summary>
         /// Max horizontal speed of the player.
@@ -298,8 +299,10 @@ namespace Platformer.Mechanics
             }
             else
             {
-                targetVelocity = new Vector2(-1f, 2f);
-                velocity.y = 3f;
+                targetVelocity = new Vector2(-knockback, knockback);
+                //TODO make knockback dependent on direction of impact
+                velocity.y = knockback;
+                //only the x of targetvelocity is considered for velocity.x, velocity.y is separate
                 animator.SetFloat("velocityX", Mathf.Abs(velocity.x));
             }
 
