@@ -32,15 +32,21 @@ namespace Platformer.Mechanics
         // private String spriteColor;
         public JumpState jumpState = JumpState.Grounded;
         public AttackState attackState = AttackState.Neutral;
+        public string damagedState = "Neutral";
         public float AttackCoolDownDuration;
         private float AttackCoolDownTimer = 0;
         public float AttackHitboxDuration;
         public float AttackComboTiming = 0.1f;
         private float AttackHitboxTimer = 0;
+
+        public float DamageFlashDuration = 0.2f;
+        public float DamageFlashTimer = 0;
         private bool stopJump;
         /*internal new*/
         public Collider2D collider2d;
         /*internal new*/
+
+        public Rigidbody2D playerrigidbody;
         public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
@@ -60,6 +66,7 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
             hitbox.SetActive(false);
+            playerrigidbody = GetComponent<Rigidbody2D>();
         }
 
         protected override void Update()
@@ -111,16 +118,25 @@ namespace Platformer.Mechanics
                 float recordedTime = AttackStack.Pop();
                 AttackStack.Push(recordedTime + Time.deltaTime);
             }
-            //attackState colors
-            switch (attackState)
+            if (DamageFlashTimer > 0)
             {
-                case AttackState.Neutral:
+                DamageFlashTimer -= Time.deltaTime;
+            }
+            if (DamageFlashTimer <= 0)
+            {
+                DamageFlashTimer = 0;
+                damagedState = "Neutral";
+            }
+            //damagedState colors
+            switch (damagedState)
+            {
+                case "Neutral":
                     spriteRenderer.color = Color.green;
                     break;
-                case AttackState.Attacking:
+                case "Impact":
                     spriteRenderer.color = Color.red;
                     break;
-                case AttackState.Cooldown:
+                case "Invulnerable":
                     spriteRenderer.color = Color.blue;
                     break;
             }
@@ -130,6 +146,7 @@ namespace Platformer.Mechanics
         }
         void Attack()
         {
+            Debug.Log(damagedState);
             float prevAttackTimeAgo;
             //check for chain of attacks
             //if previous was a success, we can attack. if failure, we don't.
@@ -270,11 +287,16 @@ namespace Platformer.Mechanics
                 }
                 hitbox.transform.localPosition = new Vector2(gameObject.transform.localPosition.x - hitboxOffset, gameObject.transform.localPosition.y); //hitbox tracks player
             }
-            //if in attack, prevent the player from flipping
+            //TODO if in attack, prevent the player from flipping
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+            // if (damagedState != "Impact")
+            //     targetVelocity = move * maxSpeed;
+            // else
+            //     targetVelocity = new Vector2(velocity.x, velocity.y);
+
         }
         //TODO taken damage state (brief invulnerability, sprite change)
         public enum JumpState
@@ -291,5 +313,6 @@ namespace Platformer.Mechanics
             Attacking,
             Cooldown
         }
+        //TODO add enum DamagedState across player and PlayerDamage and enemy
     }
 }

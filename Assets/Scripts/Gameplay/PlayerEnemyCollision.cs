@@ -50,7 +50,10 @@ namespace Platformer.Gameplay
                         Schedule<PlayerDeath>();
                     }
                     else
+                    {
                         playerHealth.Decrement();
+                        Schedule<PlayerDamage>();
+                    }
                 }
             }
         }
