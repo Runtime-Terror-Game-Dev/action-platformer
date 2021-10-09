@@ -40,7 +40,8 @@ namespace Platformer.Mechanics
             if (currentHP == 0)
             {
                 var ev = Schedule<HealthIsZero>();
-                ev.health = this;
+                ev.entity = gameObject; //the gameObject that this health script is attached to
+                ev.health = this; //the script itself
             }
         }
 

@@ -120,7 +120,6 @@ namespace Platformer.Mechanics
             }
             if (DamageFlashTimer > 0)
             {
-                // playerrigidbody.AddForce(new Vector2(-1000f, 1000f), ForceMode2D.Impulse);
                 DamageFlashTimer -= Time.deltaTime;
             }
             if (DamageFlashTimer <= 0)
@@ -305,7 +304,6 @@ namespace Platformer.Mechanics
             }
 
         }
-        //TODO taken damage state (brief invulnerability, sprite change)
         public enum JumpState
         {
             Grounded,

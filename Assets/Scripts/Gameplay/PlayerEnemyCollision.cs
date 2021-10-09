@@ -15,7 +15,8 @@ namespace Platformer.Gameplay
     {
         public EnemyController enemy;
         public PlayerController player;
-        public Collider2D hitbox;
+        public Hitbox hitbox;
+        //Collider 2D can be any collision , producing errors, so change to Hitbox script
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
@@ -25,6 +26,7 @@ namespace Platformer.Gameplay
             if (hitbox != null)
             {
                 var enemyHealth = enemy.GetComponent<Health>();
+                Schedule<EnemyDamage>().enemy = enemy;
                 if (enemyHealth != null)
                 {
                     enemyHealth.Decrement();
@@ -33,15 +35,13 @@ namespace Platformer.Gameplay
                         Schedule<EnemyDeath>().enemy = enemy;
                     }
                 }
-                // else
-                // {
-                //     Schedule<EnemyDeath>().enemy = enemy;
-                // }
-                Debug.Log("willHurtEnemy = true");
+                else
+                {
+                    Schedule<EnemyDeath>().enemy = enemy;
+                }
             }
-            else //we assume player ran into enemy
+            if (player != null)
             {
-                Debug.Log("willHurtEnemey = false");
                 var playerHealth = player.GetComponent<Health>();
                 if (playerHealth != null) //always true
                 {

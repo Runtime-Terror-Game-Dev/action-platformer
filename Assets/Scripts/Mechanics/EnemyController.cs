@@ -13,6 +13,7 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(AnimationController), typeof(Collider2D))]
     public class EnemyController : MonoBehaviour
     {
+        public float knockbackForce = 3f;
         public PatrolPath path;
         public AudioClip ouch;
 
@@ -22,7 +23,10 @@ namespace Platformer.Mechanics
         internal AudioSource _audio;
         SpriteRenderer spriteRenderer;
         private Collider2D playerControllerHitbox;
-
+        public string damagedState = "Neutral";
+        public float DamageFlashDuration = 0.3f;
+        public float DamageFlashTimer = 0;
+        public Rigidbody2D enemyrigidbody;
 
         public Bounds Bounds => _collider.bounds;
 
@@ -32,24 +36,12 @@ namespace Platformer.Mechanics
             _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            enemyrigidbody = GetComponent<Rigidbody2D>();
         }
-        //jank
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
             var hitbox = collision.gameObject.GetComponent<Hitbox>();
-            try
-            {
-                if (hitbox)
-                {
-                    playerControllerHitbox = hitbox.gameObject.GetComponent<Collider2D>();
-                }
-            }
-            catch (SystemException e)
-            {
-                playerControllerHitbox = null;
-            }
-            //Hitbox should be set.
             if (player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
@@ -58,11 +50,11 @@ namespace Platformer.Mechanics
                 ev.hitbox = null;
             }
             //custom hitbox detection
-            if (playerControllerHitbox != null)
+            if (hitbox != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
                 ev.player = null;
-                ev.hitbox = playerControllerHitbox;
+                ev.hitbox = hitbox;
                 ev.enemy = this;
             }
         }
@@ -73,6 +65,19 @@ namespace Platformer.Mechanics
             {
                 if (mover == null) mover = path.CreateMover(control.maxSpeed * 0.5f);
                 control.move.x = Mathf.Clamp(mover.Position.x - transform.position.x, -1, 1);
+            }
+            if (damagedState == "Impact")
+            {
+                enemyrigidbody.AddForce(new Vector2(knockbackForce, knockbackForce));
+            }
+            if (DamageFlashTimer > 0)
+            {
+                DamageFlashTimer -= Time.deltaTime;
+            }
+            if (DamageFlashTimer <= 0)
+            {
+                DamageFlashTimer = 0;
+                damagedState = "Neutral";
             }
         }
 
