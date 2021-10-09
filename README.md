@@ -1,1 +1,2 @@
 # action-platformer
+Fixing bugs
