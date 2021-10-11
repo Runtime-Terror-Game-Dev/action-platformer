@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Platformer.Mechanics;
 using UnityEngine;
 
-public class ShootingEnemy : MonoBehaviour
+public class ShootingEnemy : EnemyController
 {
     // Start is called before the first frame update
     private float timeBtwShots;
@@ -20,11 +21,13 @@ public class ShootingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeBtwShots <= 0){
+        if (timeBtwShots <= 0)
+        {
             Instantiate(projectile, transform.position, Quaternion.identity);
             timeBtwShots = startTimeBtwShots;
         }
-        else{
+        else
+        {
             timeBtwShots -= Time.deltaTime;
         }
     }
