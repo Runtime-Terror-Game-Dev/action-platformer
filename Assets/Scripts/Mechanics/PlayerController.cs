@@ -132,7 +132,7 @@ namespace Platformer.Mechanics
             switch (damagedState)
             {
                 case "Neutral":
-                    spriteRenderer.color = Color.green;
+                    spriteRenderer.color = Color.white;
                     break;
                 case "Impact":
                     spriteRenderer.color = Color.red;
