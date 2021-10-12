@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2651140156555518892}
   - component: {fileID: 772289407653213039}
   - component: {fileID: 5843668731025413174}
-  m_Layer: 13
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,8 +176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd654acc1f7894a509f3420e5c9ffea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
   path: {fileID: 0}
   ouch: {fileID: 8300000, guid: b7f741588644cd64bbee6387cb54a96d, type: 3}
+  damagedState: Neutral
+  DamageFlashDuration: 0.3
+  DamageFlashTimer: 0
+  enemyrigidbody: {fileID: 0}
 --- !u!82 &5843668731025413174
 AudioSource:
   m_ObjectHideFlags: 0

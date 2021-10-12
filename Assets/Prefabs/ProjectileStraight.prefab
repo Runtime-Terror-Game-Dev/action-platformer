@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3311802715015178906}
   - component: {fileID: -953860171313219761}
   - component: {fileID: -8900337594688114840}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileStraight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,5 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd654acc1f7894a509f3420e5c9ffea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
   path: {fileID: 0}
   ouch: {fileID: 8300000, guid: b7f741588644cd64bbee6387cb54a96d, type: 3}
+  damagedState: Neutral
+  DamageFlashDuration: 0.3
+  DamageFlashTimer: 0
+  enemyrigidbody: {fileID: 0}
