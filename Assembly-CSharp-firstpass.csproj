@@ -13,11 +13,11 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{362b1afd-3fed-2421-18af-31feaff2801e}</ProjectGuid>
+    <ProjectGuid>{8a4fc50a-184a-7962-bfcb-32919a0139ef}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -52,74 +52,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Mechanics\SpawnPoint.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\ShootingEnemy.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\ProjectileStraight.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerDamage.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerEnemyCollision.cs" />
-     <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
-     <Compile Include="Assets\Scripts\View\ParallaxLayer.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\BearScript.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\VictoryZone.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\PlayAudioClip.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\EnemyDamage.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerTokenCollision.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\GameController.cs" />
-     <Compile Include="Assets\HealthBarScript.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\EnablePlayerInput.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\Health.cs" />
-     <Compile Include="Assets\Hitbox.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\EnemyController.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerLanded.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\KinematicObject.cs" />
-     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\PlatformerJumpPad.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerDeath.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerSpawn.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\PlayerController.cs" />
-     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\EmitParticlesOnLand.cs" />
-     <Compile Include="Assets\Scripts\View\AnimatedTile.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\TokenInstance.cs" />
-     <Compile Include="Assets\Scripts\UI\MainUIController.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\AnimationController.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerStopJump.cs" />
-     <Compile Include="Assets\Scripts\Core\Simulation.cs" />
-     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\Jiggler.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\PatrolPath.Mover.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\TokenController.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\RetreatController.cs" />
-     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\SimpleTrigger.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerEnteredVictoryZone.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\DeathZone.cs" />
-     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\PlatformerSpeedPad.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerJumped.cs" />
-     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Backend\TemplateEditorDetection.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\PlayerEnteredDeathZone.cs" />
-     <Compile Include="Assets\Scripts\Core\Simulation.Event.cs" />
-     <Compile Include="Assets\Scripts\Core\Fuzzy.cs" />
-     <Compile Include="Assets\Scripts\Mechanics\PatrolPath.cs" />
-     <Compile Include="Assets\Scripts\Model\PlatformerModel.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\EnemyDeath.cs" />
-     <Compile Include="Assets\Scripts\UI\MetaGameController.cs" />
-     <Compile Include="Assets\Scripts\Core\Simulation.InstanceRegister.cs" />
-     <Compile Include="Assets\Scripts\Gameplay\HealthIsZero.cs" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
-     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-     <None Include="Assets\Mod Assets\Mod Resources\Shaders\SpritesHue.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+     <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -758,10 +698,6 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{8a4fc50a-184a-7962-bfcb-32919a0139ef}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.2DPlatformer.Tutorials.csproj">
       <Project>{1a8408f0-c844-c8b2-381e-7ba943495dc7}</Project>
       <Name>Unity.2DPlatformer.Tutorials</Name>
