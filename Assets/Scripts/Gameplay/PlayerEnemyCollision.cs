@@ -20,7 +20,6 @@ namespace Platformer.Gameplay
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
-        //TODO fix bug where killing an enemy with health script also kills player
         public override void Execute()
         {
             if (hitbox != null)
