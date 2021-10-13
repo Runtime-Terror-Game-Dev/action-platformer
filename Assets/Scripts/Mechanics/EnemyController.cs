@@ -38,10 +38,11 @@ namespace Platformer.Mechanics
             spriteRenderer = GetComponent<SpriteRenderer>();
             enemyrigidbody = GetComponent<Rigidbody2D>();
         }
+
+
         void OnCollisionEnter2D(Collision2D collision)
         {
             var player = collision.gameObject.GetComponent<PlayerController>();
-            var hitbox = collision.gameObject.GetComponent<Hitbox>();
             if (player != null)
             {
                 var ev = Schedule<PlayerEnemyCollision>();
@@ -49,6 +50,12 @@ namespace Platformer.Mechanics
                 ev.enemy = this;
                 ev.hitbox = null;
             }
+        }
+
+        void OnTriggerEnter2D(Collider2D collider)
+        {
+            var hitbox = collider.gameObject.GetComponent<Hitbox>();
+
             //custom hitbox detection
             if (hitbox != null)
             {

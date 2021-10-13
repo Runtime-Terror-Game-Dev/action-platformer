@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8600917708948113730}
   - component: {fileID: 6422588150472546689}
   - component: {fileID: 184301534117904088}
-  m_Layer: 13
+  m_Layer: 7
   m_Name: RTerrorEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

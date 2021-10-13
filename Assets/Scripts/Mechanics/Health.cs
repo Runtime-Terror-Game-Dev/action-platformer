@@ -22,22 +22,41 @@ namespace Platformer.Mechanics
 
         public int currentHP;
 
+        private bool debug = true;
+
         /// <summary>
         /// Increment the HP of the entity.
         /// </summary>
-        public void Increment()
+        public void Increment(int hp=1)
         {
-            currentHP = Mathf.Clamp(currentHP + 1, 0, maxHP);
+            // Try not to do this. Slow, unecessary, skips events.
+            //currentHP = Mathf.Clamp(currentHP+hp, 0, maxHP);
+
+            //currentHP += hp;
+
+            if ((currentHP+=hp) >= maxHP)
+            {
+                currentHP = maxHP;
+                // Healed to max, particles/FX as desired
+            }
+            else
+            {
+                // Healed partially, particles/FX as desired
+            }
+            if (debug) Debug.Log(name + " has healed " + hp + " HealthPoints!\n HP: " + currentHP + "/" + maxHP);
         }
 
         /// <summary>
         /// Decrement the HP of the entity. Will trigger a HealthIsZero event when
         /// current HP reaches 0.
         /// </summary>
-        public void Decrement()
+        public void Decrement(int hp=1)
         {
-            currentHP = Mathf.Clamp(currentHP - 1, 0, maxHP);
-            if (currentHP == 0)
+            currentHP -= hp;
+
+            if (debug) Debug.Log(name+" has taken "+hp+" damage!\n HP: "+currentHP+"/"+maxHP);
+
+            if (currentHP <= 0)
             {
                 var ev = Schedule<HealthIsZero>();
                 ev.entity = gameObject; //the gameObject that this health script is attached to
@@ -48,9 +67,9 @@ namespace Platformer.Mechanics
         /// <summary>
         /// Decrement the HP of the entitiy until HP reaches 0.
         /// </summary>
-        public void Die()
+        public void Kill()
         {
-            while (currentHP > 0) Decrement();
+            Decrement(currentHP);
         }
 
         void Awake()

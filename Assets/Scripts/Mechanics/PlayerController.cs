@@ -59,6 +59,7 @@ namespace Platformer.Mechanics
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
         public Bounds Bounds => collider2d.bounds;
         private Stack<float> AttackStack = new Stack<float>(); //elapsed times between attacks
+
         void Awake()
         {
             health = GetComponent<Health>();

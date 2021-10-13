@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2854209678881170714}
   - component: {fileID: 4912599467481411367}
   - component: {fileID: -351090641955134083}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07101fb0b7dc0534a8ac17af838b5b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 3
+  path: {fileID: 0}
+  ouch: {fileID: 0}
+  damagedState: Neutral
+  DamageFlashDuration: 0.3
+  DamageFlashTimer: 0
+  enemyrigidbody: {fileID: 0}
   startTimeBtwShots: 2
   projectile: {fileID: 1867235368237786734, guid: aab3b996a1ceedd42af544c31c34fa04,
     type: 3}
