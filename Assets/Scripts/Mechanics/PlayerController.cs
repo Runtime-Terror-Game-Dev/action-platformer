@@ -132,7 +132,7 @@ namespace Platformer.Mechanics
             switch (damagedState)
             {
                 case "Neutral":
-                    spriteRenderer.color = Color.green;
+                    spriteRenderer.color = Color.white;
                     break;
                 case "Impact":
                     spriteRenderer.color = Color.red;
@@ -297,8 +297,8 @@ namespace Platformer.Mechanics
             }
             else
             {
-                targetVelocity = new Vector2(-knockback, knockback);
-                //TODO make knockback dependent on direction of impacc
+                 targetVelocity = new Vector2(-knockback, knockback);
+                // TODO make knockback dependent on direction of impacc
                 velocity.y = knockback;
                 //only the x of targetvelocity is considered for velocity.x, velocity.y is separate
                 animator.SetFloat("velocityX", Mathf.Abs(velocity.x));
