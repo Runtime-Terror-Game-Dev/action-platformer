@@ -28,14 +28,14 @@ namespace Platformer.Mechanics
         /// <summary>
         /// Increment the HP of the entity.
         /// </summary>
-        public void Increment(int hp=1)
+        public void Increment(int hp = 1)
         {
             // Try not to do this. Slow, unecessary, skips events.
             //currentHP = Mathf.Clamp(currentHP+hp, 0, maxHP);
 
             //currentHP += hp;
 
-            if ((currentHP+=hp) >= maxHP)
+            if ((currentHP += hp) >= maxHP)
             {
                 currentHP = maxHP;
                 // Healed to max, particles/FX as desired
@@ -51,13 +51,13 @@ namespace Platformer.Mechanics
         /// Decrement the HP of the entity. Will trigger a HealthIsZero event when
         /// current HP reaches 0.
         /// </summary>
-        public void Decrement(int hp=1)
+        public void Decrement(int hp = 1)
         {
             currentHP -= hp;
 
-            if (debug) Debug.Log(name+" has taken "+hp+" damage!\n HP: "+currentHP+"/"+maxHP);
-            healthBar.SetHealth(currentHP);
-
+            if (debug) Debug.Log(name + " has taken " + hp + " damage!\n HP: " + currentHP + "/" + maxHP);
+            if (healthBar != null)
+                healthBar.SetHealth(currentHP);
             if (currentHP <= 0)
             {
                 var ev = Schedule<HealthIsZero>();
@@ -77,7 +77,8 @@ namespace Platformer.Mechanics
         void Awake()
         {
             currentHP = maxHP;
-            healthBar.SetMaxHealth(maxHP);
+            if (healthBar != null)
+                healthBar.SetMaxHealth(maxHP);
         }
     }
 }

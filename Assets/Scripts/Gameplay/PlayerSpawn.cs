@@ -25,6 +25,7 @@ namespace Platformer.Gameplay
             player.health.currentHP = player.health.maxHP;
             model.virtualCamera.m_Follow = player.transform;
             model.virtualCamera.m_LookAt = player.transform;
+            player.health.healthBar.SetMaxHealth(player.health.maxHP);
             Simulation.Schedule<EnablePlayerInput>(2f);
         }
     }
