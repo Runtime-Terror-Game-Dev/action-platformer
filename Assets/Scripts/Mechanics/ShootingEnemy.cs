@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Platformer.Mechanics;
 using UnityEngine;
+using System;
 
 public class ShootingEnemy : EnemyController
 {
     // Start is called before the first frame update
     private float timeBtwShots;
     public float startTimeBtwShots;
+    public float shootingDistance;
 
     public GameObject projectile;
     public Transform player;
@@ -18,8 +20,7 @@ public class ShootingEnemy : EnemyController
         timeBtwShots = startTimeBtwShots;
     }
 
-    // Update is called once per frame
-    void Update()
+    void ShootAtPlayer()
     {
         if (timeBtwShots <= 0)
         {
@@ -29,6 +30,14 @@ public class ShootingEnemy : EnemyController
         else
         {
             timeBtwShots -= Time.deltaTime;
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Math.Abs(player.position.x - transform.position.x) <= shootingDistance){
+            ShootAtPlayer();
         }
     }
 }

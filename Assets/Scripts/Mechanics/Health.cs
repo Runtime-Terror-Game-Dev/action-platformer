@@ -6,7 +6,7 @@ using static Platformer.Core.Simulation;
 namespace Platformer.Mechanics
 {
     /// <summary>
-    /// Represebts the current vital statistics of some game entity.
+    /// Represents the current vital statistics of some game entity.
     /// </summary>
     public class Health : MonoBehaviour
     {
@@ -23,6 +23,7 @@ namespace Platformer.Mechanics
         public int currentHP;
 
         private bool debug = true;
+        public HealthBar healthBar;
 
         /// <summary>
         /// Increment the HP of the entity.
@@ -55,6 +56,7 @@ namespace Platformer.Mechanics
             currentHP -= hp;
 
             if (debug) Debug.Log(name+" has taken "+hp+" damage!\n HP: "+currentHP+"/"+maxHP);
+            healthBar.SetHealth(currentHP);
 
             if (currentHP <= 0)
             {
@@ -75,6 +77,7 @@ namespace Platformer.Mechanics
         void Awake()
         {
             currentHP = maxHP;
+            healthBar.SetMaxHealth(maxHP);
         }
     }
 }

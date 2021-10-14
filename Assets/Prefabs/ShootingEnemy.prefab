@@ -104,6 +104,7 @@ MonoBehaviour:
   DamageFlashTimer: 0
   enemyrigidbody: {fileID: 0}
   startTimeBtwShots: 2
+  shootingDistance: 18
   projectile: {fileID: 1867235368237786734, guid: aab3b996a1ceedd42af544c31c34fa04,
     type: 3}
   player: {fileID: 4520396350849616, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
